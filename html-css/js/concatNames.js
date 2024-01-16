@@ -1,5 +1,10 @@
 // Write a program to demonstrate how a function can be passed as a parameter to another function.
 
+// Optimized function
+function concatNamesOptimization({ firstName, lastName }) {
+  return `${firstName} ${lastName}`;
+}
+
 // Function to concat first and last name.
 function concatNames(firstName, lastName) {
   return firstName + " " + lastName;
@@ -10,6 +15,17 @@ function concat(operation, x, y) {
   return operation(x, y);
 }
 
+function concatOptimize(operation, person) {
+  return operation(person);
+}
+
+const person = {
+  firstName: "Pavan",
+  lastName: "Marri",
+};
+
 // Pass the 'concatNames' function as a parameter to 'concat'
 var result = concat(concatNames, "Zemoso", "Labs");
+var res = concatOptimize(concatNamesOptimization, person);
 console.log("Result of addition:", result);
+console.log("concatNamesOptimization ", res);
