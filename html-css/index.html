@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Zemoso Labs</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo-container">
+        <img
+          src="images/zemoso_logo.svg"
+          class="move-down"
+          alt="Zemoso Labs Icon Photo"
+          onclick="showElement('default')"
+        />
+        <img
+          src="images/zemoso_text.svg"
+          alt="Zemoso Labs Text Photo"
+          onclick="showElement('default')"
+        />
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#home" onclick="showElement('home')">Home</a></li>
+          <li><a href="#about" onclick="showElement('about')">About Me</a></li>
+          <li>
+            <a href="#contact" onclick="showElement('contact')">Contact Us</a>
+          </li>
+          <li>
+            <a href="#gallery" onclick="showElement('gallery')">My Gallery</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home">
+        <h2>Zemoso Labs</h2>
+        <p>Home Content</p>
+      </section>
+
+      <section id="about">
+        <h2>About Me</h2>
+        <p>
+          We transform good ideas into great products with our proven
+          proprietary methodologies and precise execution.
+        </p>
+        <!-- Add more content as needed -->
+      </section>
+
+      <section id="contact">
+        <h2>Contact Me</h2>
+        <form id="myForm" onsubmit="submitForm(event)">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+
+          <button type="submit">Send Message</button>
+        </form>
+        <p id="acknowledgement">
+          Thank you for your message. I'll get back to you soon!
+        </p>
+      </section>
+
+      <section id="gallery">
+        <h2>My Gallery</h2>
+        <div class="photo-grid">
+          <img src="images/img1.jpg" alt="Office Photo 1" />
+          <img src="images/img2.jpg" alt="Office Photo 2" />
+          <img src="images/img3.jpg" alt="Office Photo 3" />
+          <img src="images/img4.jpg" alt="Office Photo 4" />
+          <img src="images/img5.jpg" alt="Office Photo 5" />
+          <img src="images/img6.jpg" alt="Office Photo 6" />
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; Zemoso Labs. All rights reserved.</p>
+    </footer>
+
+    <script>
+      function showElement(elementId) {
+        var elements = ["home", "about", "contact", "gallery"];
+        elements.forEach(function (id) {
+          var currentElement = document.getElementById(id);
+          var formDiv = document.getElementById("myForm");
+          var acknowledgementDiv = document.getElementById("acknowledgement");
+
+          if (id === elementId) {
+            currentElement.style.display = "block";
+
+            if (id === "contact") {
+              formDiv.style.display = "block";
+              acknowledgementDiv.style.display = "none";
+              formDiv.reset();
+            } else {
+              formDiv.style.display = "none";
+              acknowledgementDiv.style.display = "none";
+            }
+          } else {
+            currentElement.style.display = "none";
+          }
+        });
+      }
+
+      function submitForm(event) {
+        event.preventDefault();
+        var acknowledgementDiv = document.getElementById("acknowledgement");
+        var formDiv = document.getElementById("myForm");
+
+        acknowledgementDiv.style.display = "block";
+        formDiv.style.display = "none";
+      }
+    </script>
+  </body>
+</html>
