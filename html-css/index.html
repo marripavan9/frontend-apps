@@ -52,7 +52,7 @@
 
       <section id="contact">
         <h2>Contact Me</h2>
-        <form id="myForm">
+        <form id="myForm" onsubmit="submitForm(event)">
           <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required />
@@ -68,9 +68,7 @@
             <textarea id="message" name="message" required></textarea>
           </div>
 
-          <button type="submit" onclick="submitForm(event)">
-            Send Message
-          </button>
+          <button type="submit">Send Message</button>
         </form>
         <p id="acknowledgement">
           Thank you for your message. I'll get back to you soon!
