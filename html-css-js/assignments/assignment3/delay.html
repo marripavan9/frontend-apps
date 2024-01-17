@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Bar with Debouncing and Throttling</title>
+  </head>
+  <body>
+    <!-- Search input element -->
+    <input type="text" id="searchInput" placeholder="Search..." />
+
+    <!-- Result container -->
+    <div id="searchResults"></div>
+
+    <script>
+      // Function to simulate search request
+      function searchRequest(query) {
+        // In a real-world scenario, you would make an asynchronous API request here
+        console.log("Searching for:", query);
+      }
+
+      // Debounce function
+      function debounce(func, delay) {
+        let timeoutId;
+        return function () {
+          const args = arguments;
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => {
+            func.apply(this, args);
+          }, delay);
+        };
+      }
+
+      // Throttle function
+      function throttle(func, delay) {
+        let throttling = false;
+        return function () {
+          if (!throttling) {
+            throttling = true;
+            func.apply(this, arguments);
+            setTimeout(() => {
+              throttling = false;
+            }, delay);
+          }
+        };
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("searchInput");
+        const searchResults = document.getElementById("searchResults");
+
+        // Debounce the search input
+        const debouncedSearch = debounce((query) => {
+          searchRequest(query);
+        }, 500);
+
+        // Throttle the search input
+        const throttledSearch = throttle((query) => {
+          searchRequest(query);
+        }, 1000);
+
+        // Attach event listener to the search input
+        searchInput.addEventListener("input", function () {
+          const query = this.value;
+          // Use either debounced or throttled search function
+          // debouncedSearch(query);
+          throttledSearch(query);
+        });
+      });
+    </script>
+  </body>
+</html>
